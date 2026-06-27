@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRISM AI Copilot</title>
+  <!-- Google Fonts Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="sidepanel.css">
+</head>
+<body>
+  <div class="prism-container">
+    <!-- Header Block -->
+    <header class="prism-header">
+      <div class="brand-row">
+        <div class="brand-logo-container">
+          <div class="brand-logo-glow"></div>
+          <svg class="brand-logo" viewBox="0 0 128 128" width="24" height="24">
+            <polygon points="64,28 28,90 64,96" fill="none" stroke="#8b5cf6" stroke-width="6"/>
+            <polygon points="64,28 100,90 64,96" fill="none" stroke="#06b6d4" stroke-width="6"/>
+            <polygon points="28,90 100,90 64,96" fill="none" stroke="#d946ef" stroke-width="6"/>
+          </svg>
+          <span class="brand-title">PRISM</span>
+        </div>
+        <div class="header-actions">
+          <button id="btn-save-page" class="action-btn" title="Archive Page to Knowledge Base">
+            <!-- Star Icon -->
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12,2 15,9 22,9 17,14 19,21 12,17 5,21 7,14 2,9 9,9"/>
+            </svg>
+          </button>
+          <button id="btn-clear-chat" class="action-btn" title="Reset Chat History">
+            <!-- Trash Icon -->
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="3,6 5,6 21,6"/>
+              <path d="M19,6v14a2,2 0 0,1-2,2H7a2,2 0 0,1-2-2V6m3,0V4a2,2 0 0,1 2-2h4a2,2 0 0,1 2,2v2"/>
+            </svg>
+          </button>
+          <button id="btn-settings" class="action-btn" title="Open Settings Dashboard">
+            <!-- Gear Icon -->
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"/>
+              <path d="M19.4,15a1.65,1.65,0,0,0,.33,1.82l.06.06a2,2,0,1,1-2.83,2.83l-.06-.06a1.65,1.65,0,0,0-1.82-.33,1.65,1.65,0,0,0-1,1.51V21a2,2,0,0,1-4,0v-.09A1.65,1.65,0,0,0,9,19.4a1.65,1.65,0,0,0-1.82.33l-.06.06a2,2,0,1,1-2.83-2.83l.06-.06a1.65,1.65,0,0,0,.33-1.82,1.65,1.65,0,0,0-1.51-1H3a2,2,0,0,1,0-4h.09A1.65,1.65,0,0,0,4.6,9a1.65,1.65,0,0,0-.33-1.82l-.06-.06a2,2,0,1,1,2.83-2.83l.06.06a1.65,1.65,0,0,0,1.82.33H9a1.65,1.65,0,0,0,1-1.51V3a2,2,0,0,1,4,0v.09a1.65,1.65,0,0,0,1,1.51,1.65,1.65,0,0,0,1.82-.33l.06-.06a2,2,0,1,1,2.83,2.83l-.06.06a1.65,1.65,0,0,0-.33,1.82V9a1.65,1.65,0,0,0,1.51,1H21a2,2,0,0,1,0,4h-.09A1.65,1.65,0,0,0,19.4,15Z"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+      
+      <!-- Current Page Context Card -->
+      <div id="page-context-card" class="page-context-card">
+        <div class="page-meta-row">
+          <span id="badge-domain-type" class="badge">Detecting...</span>
+          <span id="badge-reading-time" class="badge badge-outline">-- min read</span>
+        </div>
+        <h2 id="current-page-title" class="page-title">Detecting active website...</h2>
+        <p id="current-page-url" class="page-url">No active context loaded.</p>
+      </div>
+    </header>
+
+    <!-- Main Message Loop Feed -->
+    <main id="chat-feed" class="chat-feed scrollable">
+      <!-- Guide Panel: displays before first prompt -->
+      <div id="guide-panel" class="guide-panel">
+        <div class="welcome-text">
+          <h3>Hello, I'm PRISM.</h3>
+          <p>What would you like to do with the current page?</p>
+        </div>
+        <div class="quick-prompts">
+          <button class="prompt-card" data-prompt="Summarize this page">
+            <span class="icon">📑</span>
+            <div class="card-details">
+              <h4>Summarize Page</h4>
+              <p>Extract core themes and executive bullet points.</p>
+            </div>
+          </button>
+          <button class="prompt-card" data-prompt="Explain this page like I am a beginner">
+            <span class="icon">🧠</span>
+            <div class="card-details">
+              <h4>Explain Simply</h4>
+              <p>Break down highly complex topics step-by-step.</p>
+            </div>
+          </button>
+          <button class="prompt-card" data-prompt="What are the main takeaways from this page?">
+            <span class="icon">💡</span>
+            <div class="card-details">
+              <h4>Main Takeaways</h4>
+              <p>Identify primary conclusions and core facts.</p>
+            </div>
+          </button>
+        </div>
+      </div>
+      
+      <div id="messages-container" class="messages-container">
+        <!-- Rendered conversation strings load here -->
+      </div>
+
+      <!-- Thinking Indicator -->
+      <div id="ai-loading" class="ai-loading hidden">
+        <div class="loader-circle"></div>
+        <span class="loading-text">PRISM is analyzing context...</span>
+      </div>
+    </main>
+
+    <!-- Floating Text Selection Notification Widget -->
+    <div id="selection-widget" class="selection-widget hidden">
+      <div class="selection-details">
+        <span class="widget-icon">⚡</span>
+        <div class="widget-text">
+          <p class="widget-title">Selection Highlighted</p>
+          <p id="selection-snippet" class="widget-snippet">"Highlight text..."</p>
+        </div>
+      </div>
+      <button id="btn-explain-selection" class="widget-action-btn">Explain</button>
+    </div>
+
+    <!-- Input Footer Bar -->
+    <footer class="prism-footer">
+      <div class="input-glow-wrapper">
+        <textarea id="chat-input" rows="1" placeholder="Ask about this page..."></textarea>
+        <button id="btn-submit" class="submit-btn" disabled>
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="22" y1="2" x2="11" y2="13"/>
+            <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+          </svg>
+        </button>
+      </div>
+      <div class="footer-note">
+        Powered by PRISM AI Engine • <span id="lbl-api-mode">Demo Mode</span>
+      </div>
+    </footer>
+  </div>
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

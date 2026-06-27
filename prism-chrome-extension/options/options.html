@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRISM Dashboard & Settings</title>
+  <!-- Google Fonts Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="options.css">
+</head>
+<body>
+  <div class="prism-dashboard">
+    <!-- Sidebar Settings Panel -->
+    <aside class="sidebar-config">
+      <div class="brand-header">
+        <svg class="brand-logo" viewBox="0 0 128 128" width="32" height="32">
+          <polygon points="64,28 28,90 64,96" fill="none" stroke="#8b5cf6" stroke-width="6"/>
+          <polygon points="64,28 100,90 64,96" fill="none" stroke="#06b6d4" stroke-width="6"/>
+          <polygon points="28,90 100,90 64,96" fill="none" stroke="#d946ef" stroke-width="6"/>
+        </svg>
+        <h1>PRISM Dashboard</h1>
+      </div>
+      
+      <p class="sidebar-intro">Configure your global AI engines, customized templates, and storage preferences.</p>
+      
+      <form id="settings-form" class="settings-form">
+        <!-- AI Engine -->
+        <div class="form-group">
+          <label for="select-provider">AI Brain Engine</label>
+          <select id="select-provider">
+            <option value="mock">Interactive Demo Mode</option>
+            <option value="gemini">Gemini API (Google)</option>
+            <option value="claude">Claude API (Anthropic)</option>
+            <option value="openai">OpenAI (GPT-4)</option>
+          </select>
+          <small class="help-text">Demo mode works out-of-the-box without keys.</small>
+        </div>
+
+        <!-- API Key -->
+        <div id="api-key-container" class="form-group hidden">
+          <label for="input-api-key">API Authorization Key</label>
+          <div class="password-wrapper">
+            <input type="password" id="input-api-key" placeholder="Enter provider API key...">
+            <button type="button" id="btn-toggle-key-visibility" class="toggle-visibility-btn">👁️</button>
+          </div>
+          <small class="help-text">Keys are stored securely in local extension sandboxed storage.</small>
+        </div>
+
+        <!-- Model Selection -->
+        <div id="model-container" class="form-group hidden">
+          <label for="select-model">AI Model Selection</label>
+          <select id="select-model">
+            <!-- Dynamically populated based on provider -->
+          </select>
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" class="save-settings-btn">
+          <span>Apply Configurations</span>
+        </button>
+      </form>
+
+      <!-- Status Indicator -->
+      <div id="settings-status" class="settings-status hidden">
+        ⚙️ Settings saved successfully!
+      </div>
+
+      <!-- Export Panel -->
+      <div class="data-mgmt-card">
+        <h3>Graph Library Export</h3>
+        <p>Backup or migrate your IndexedDB knowledge index.</p>
+        <div class="mgmt-actions">
+          <button id="btn-export-json" class="mgmt-btn">Export JSON</button>
+          <button id="btn-export-md" class="mgmt-btn">Export Markdown</button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content Area: Saved Pages Graph Browser -->
+    <main class="main-graph-browser">
+      <header class="browser-header">
+        <div class="header-search-row">
+          <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="search-input" placeholder="Search saved pages, tags, domains, summaries...">
+          </div>
+          <div class="graph-stats">
+            <span class="stat-badge"><strong id="lbl-total-pages">0</strong> Articles Archived</span>
+          </div>
+        </div>
+      </header>
+
+      <!-- Graph Card Masonry Container -->
+      <section id="graph-grid" class="graph-grid scrollable">
+        <!-- Dynamic card rows will load here -->
+        <div class="empty-state">
+          <div class="empty-icon">📂</div>
+          <h2>Your Knowledge Library is empty</h2>
+          <p>Browse any website and click the ⭐️ (star) icon in the PRISM sidebar to archive text highlights here permanently.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script type="module" src="options.js"></script>
+</body>
+</html>

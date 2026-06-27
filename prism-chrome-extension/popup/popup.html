@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRISM Launcher</title>
+  <!-- Google Fonts Outfit & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="prism-popup-card">
+    <header class="popup-header">
+      <svg class="brand-logo" viewBox="0 0 128 128" width="28" height="28">
+        <polygon points="64,28 28,90 64,96" fill="none" stroke="#8b5cf6" stroke-width="6"/>
+        <polygon points="64,28 100,90 64,96" fill="none" stroke="#06b6d4" stroke-width="6"/>
+        <polygon points="28,90 100,90 64,96" fill="none" stroke="#d946ef" stroke-width="6"/>
+      </svg>
+      <h1>PRISM</h1>
+    </header>
+
+    <p class="popup-desc">Your contextual AI copilot that reads, summarizes, and answers questions in real-time.</p>
+
+    <div class="popup-actions">
+      <button id="btn-open-sidebar" class="primary-popup-btn">
+        <span>Slide Out Sidebar</span>
+      </button>
+      <button id="btn-open-dashboard" class="secondary-popup-btn">
+        <span>Go to Dashboard</span>
+      </button>
+    </div>
+
+    <footer class="popup-footer">
+      <span id="lbl-popup-engine">Demo Mode</span>
+    </footer>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
